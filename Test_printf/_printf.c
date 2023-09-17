@@ -1,13 +1,16 @@
 #include "main.h"
 
 /**
+ * _printf - prototype function for implementing _printf
  *
+ * condition - the _printf iterates through the format string, detecting
+ *		format specifiers '%'. and for each specifier, it calls the
+ *		appropriate pring function based on the specifier typr, and
+ *		writes its corresponding argument to the standard output.
  *
+ * @format: this is the formating string for handling specifiers
  *
- *
- *
- *
- *
+ * Return: The number of characters printed (excluding the null terminator)
  */
 
 int _printf(const char *format, ...)
@@ -18,8 +21,19 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 	while (*format)
 	{
-		if (*format == '%')
+		if (*format != '%')
 		{
+			write_char(*format);
+			print_out++;
+		}
+		else
+		{
+			format++;
+			if (*format == '\0')
+			{
+				break;
+			}
+
 			switch (*format)
 			{
 				case 'c':
@@ -29,7 +43,7 @@ int _printf(const char *format, ...)
 				}
 				case 's':
 				{
-					print_char(va_arg(args, char *));
+					print_string(va_arg(args, char *));
 					break;
 				}
 				case '%':
@@ -49,10 +63,6 @@ int _printf(const char *format, ...)
 					break;
 				}
 			}
-		}
-		else
-		{
-			write_char(*format);
 		}
 		format++;
 	}
