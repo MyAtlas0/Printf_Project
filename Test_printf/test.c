@@ -9,12 +9,12 @@
 
 int main(void)
 {
-	int len = 42;
-	char c = 'A';
-	char *str = "_Printf currently running!!!";
+        int len = 42;
+        char c = 'A';
+        char *str = "_Printf currently running!!!";
 
-	_printf("Integar: %d%%\nCharacter: %c\nString:%s\n", len, c, str);
-	printf("Integar: %d%%\nCharacter: %c\nString:%s\n", len, c, str);
+        _printf("Integar: %d%%\nCharacter: %c\nString:%s\n", len, c, str);
+        printf("Integar: %d%%\nCharacter: %c\nString:%s\n", len, c, str);
 
-	return (0);
+        return (0);
 }
