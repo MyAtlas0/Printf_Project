@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_char - this function prints the characters to standard output
+ * write_char - this function prints the characters to standard output
  *
  * @c: argument for the character to print
  */
