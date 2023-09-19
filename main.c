@@ -10,6 +10,7 @@ int main(void)
 {
 	int len_1 = 42;
 	int len_2 = 100;
+	unsigned int num = 18;
 	char c = 'A';
 	char *str = "_Printf currently running!!!";
 	char *str_1 = "Printf currently running!!!";
@@ -27,7 +28,8 @@ int main(void)
 	printf("Len:[%d]\n", len_2);
 	_printf("Unknown:[%r]\n", 'X');
 	printf("Unknown:[%r]\n", 'X');
-
+	_printf("Binary: %b\n", num);
+	printf("Binary: %b\n", num);
 
 	return (0);
 }

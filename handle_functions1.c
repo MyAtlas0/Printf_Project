@@ -1,6 +1,26 @@
 #include "main.h"
 
 /**
+ * print_binary - Prints an unsigned integer in binary format.
+ *
+ * @num: Variable for the unsigned int to be printed in binary.
+ *
+ * @count: Variable for the current character count.
+ *
+ * Return: The updated character count after printing.
+ */
+
+int print_binary(unsigned int num, int count)
+{
+	if (num > 1)
+	{
+		count = print_binary(num / 2, count);
+	}
+	return (count + write_char(num % 2 + '0'));
+}
+
+
+/**
  * handle_pointer - Function to handle the %p format specifier.
  *
  * @arg: The va_list containing the pointer to print

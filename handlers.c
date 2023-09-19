@@ -21,6 +21,8 @@ int (*handlers(char str))(va_list arg)
 			return (&handle_integer);
 		case 'p':
 			return (&handle_pointer);
+		case 'b':
+			return (&handle_binary);
 		default:
 			return (NULL);
 	}

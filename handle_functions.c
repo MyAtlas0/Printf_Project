@@ -76,7 +76,7 @@ int handle_string(va_list arg)
  *
  * @arg: The va_list containing the character to be printed.
  *
- * Return: Returns the number of chaacters printed.
+ * Return: Returns the number of characters printed.
  */
 
 int handle_integer(va_list arg)
@@ -88,3 +88,23 @@ int handle_integer(va_list arg)
 	count = print_number(num, count);
 	return (count);
 }
+
+
+/**
+ * handle_binary - Handles teh %b  format specifier;
+ *
+ * @arg: The va_list containing the character to be printed.
+ *
+ * Return: Returns the number of chaacters printed.
+ */
+
+int handle_binary(va_list arg)
+{
+	int count = 0;
+	unsigned int num;
+
+	num = va_arg(arg, unsigned int);
+	count = print_binary(num, count);
+	return (count);
+}
+
