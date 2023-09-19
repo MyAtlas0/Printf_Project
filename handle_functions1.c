@@ -65,5 +65,5 @@ int handle_unknown(va_list arg, char unknown)
 	count += write_char('%');
 	count += write_char(unknown);
 
-	return (count);
+	return (-1);
 }

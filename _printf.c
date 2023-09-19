@@ -13,14 +13,13 @@ int _printf(const char *format, ...)
 	int i;
 	int char_count = 0;
 	va_list args;
-	int (*handler_func)(va_list);;
+	int (*handler_func)(va_list);
 
 	va_start(args, format);
 	if (format == NULL)
 	{
 		return (-1);
 	}
-
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
@@ -28,17 +27,23 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == '\0')
 			{
-				break;
+				return (-1);
 			}
-
-			handler_func = handlers(format[i]);
-			if (handler_func)
+			if (format[i] == '%')
 			{
-				char_count += handler_func(args);
+				char_count += write_char('%');
 			}
 			else
 			{
-				char_count += handle_unknown(args, format[i]);
+				handler_func = handlers(format[i]);
+				if (handler_func)
+				{
+					char_count += handler_func(args);
+				}
+				else
+				{
+					char_count += handle_unknown(args, format[i]);
+				}
 			}
 		}
 		else

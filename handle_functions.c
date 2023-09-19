@@ -1,11 +1,13 @@
 #include "main.h"
 
 /**
- * print_number - This function prints a long integer.
+ * print_number - Prints a long integer.
  *
  * @num: Variable representing the number to print.
  *
  * @count: Returns the curent character count.
+ *
+ * Return: The updated character count after printing.
  */
 
 int print_number(long num, int count)
@@ -24,7 +26,7 @@ int print_number(long num, int count)
 
 
 /**
- * handle_char - The finction to handle the %c format specifier.
+ * handle_char - function to handle the %c format specifier.
  *
  * @arg: The va_list containing the character to be printed.
  *
