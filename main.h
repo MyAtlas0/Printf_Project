@@ -20,4 +20,12 @@ int handle_pointer(va_list arg);
 int handle_binary(va_list arg);
 int handle_unknown(va_list arg, char unknown);
 
+int print_unsigned_int(unsigned int num, int count);
+int handle_unsigned_int(va_list arg);
+int print_octal(unsigned int, int count);
+int handle_octal(va_list arg);
+int print_hex(unsigned int num, int count, int uppercase);
+int handle_hex(va_list arg);
+int handle_upper_hex(va_list arg);
+
 #endif /** MAIN_H **/

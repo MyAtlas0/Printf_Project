@@ -11,6 +11,9 @@ int main(void)
 	int len_1 = 42;
 	int len_2 = 100;
 	unsigned int num = 18;
+	unsigned int ui = 12345;
+	unsigned int octal = 75;
+	unsigned int hex_num = 3735928559;
 	char c = 'A';
 	char *str = "_Printf currently running!!!";
 	char *str_1 = "Printf currently running!!!";
@@ -30,6 +33,13 @@ int main(void)
 	printf("Unknown:[%r]\n", 'X');
 	_printf("Binary: %b\n", num);
 	printf("Binary: %b\n", num);
+
+	_printf("Unsigned:[%u]\n", ui);
+	printf("Unsigned:[%u]\n", ui);
+	_printf("Unsigned octal:[%o]\n", octal);
+	printf("Unsigned octal:[%o]\n", octal);
+	_printf("Unsigned hexadecimal:[%x, %X]\n", hex_num, hex_num);
+	printf("Unsigned hexadecimal:[%x, %X]\n", hex_num, hex_num);
 
 	return (0);
 }
