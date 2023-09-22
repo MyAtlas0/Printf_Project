@@ -13,7 +13,6 @@ int main(void)
 	unsigned int num = 18;
 	unsigned int ui = 12345;
 	unsigned int octal = 75;
-	unsigned int hex_num = 3735928559;
 	char c = 'A';
 	char *str = "_Printf currently running \x01\x02\x0F\x7F World!!!";
 	char *str_1 = "Printf currently running \x01\x02\x0F\x7F World!!!";
@@ -39,8 +38,12 @@ int main(void)
 	printf("Unsigned:[%u]\n", ui);
 	_printf("Unsigned octal:[%o]\n", octal);
 	printf("Unsigned octal:[%o]\n", octal);
-	_printf("Unsigned hexadecimal:[%x, %X]\n", hex_num, hex_num);
-	printf("Unsigned hexadecimal:[%x, %X]\n", hex_num, hex_num);
+	_printf("Unsigned hexadecimal:[%x, %X]\n", 3735928559, -1024);
+	printf("Unsigned hexadecimal:[%x, %X]\n", 3735928559, -1024);
 	_printf("Special string: [%S]\n", str);
+	_printf("%!\n");
+	printf("%!\n");
+	_printf("%S", "\x01\x02\x03\x04\x05\x06\x07");
+	printf("\\x01\\x02\\x03\\x04\\x05\\x06\\x07");
 	return (0);
 }

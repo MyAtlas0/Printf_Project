@@ -55,17 +55,23 @@ int handle_octal(va_list arg)
 
 int print_hex(unsigned int num, int count, int uppercase)
 {
+	char value;
 	char hexa_decimal[] = "0123456789abcdef";
 
 	if (num > 15)
 	{
 		count = print_hex(num / 16, count, uppercase);
 	}
+	value = hexa_decimal[num % 16];
 	if (uppercase)
 	{
-		return (count + write_char(hexa_decimal[num % 16] - 32));
+		if (value >= 'a' && value <= 'f')
+		{
+			value -= 32;
+		}
 	}
-	return (count + write_char(hexa_decimal[num % 16]));
+	count += write_char(value);
+	return (count);
 }
 
 

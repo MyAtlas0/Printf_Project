@@ -16,10 +16,6 @@ int _printf(const char *format, ...)
 	int (*handler_func)(va_list);
 
 	va_start(args, format);
-	if (format == NULL)
-	{
-		return (-1);
-	}
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
@@ -27,6 +23,7 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == '\0')
 			{
+				va_end(args);
 				return (-1);
 			}
 			if (format[i] == '%')
@@ -43,7 +40,6 @@ int _printf(const char *format, ...)
 				else
 				{
 					char_count += handle_unknown(args, format[i]);
-					char_count += 2;
 				}
 			}
 		}
