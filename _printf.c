@@ -43,6 +43,7 @@ int _printf(const char *format, ...)
 				else
 				{
 					char_count += handle_unknown(args, format[i]);
+					char_count += 2;
 				}
 			}
 		}

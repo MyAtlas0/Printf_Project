@@ -3,14 +3,14 @@
 /**
  * handlers - Return the appropriate function pointer for a format specifier.
  *
- * @str: The format specifier character.
+ * @specifier: The format specifier character.
  *
  * Return: A function pointer to the appropriate handler function, or NULL.
  */
 
-int (*handlers(char str))(va_list arg)
+int (*handlers(char specifier))(va_list arg)
 {
-	switch (str)
+	switch (specifier)
 	{
 		case 'c':
 			return (&handle_char);
@@ -31,6 +31,8 @@ int (*handlers(char str))(va_list arg)
 			return (&handle_hex);
 		case 'X':
 			return (&handle_upper_hex);
+		case 'S':
+			return (&handle_special_strings);
 		default:
 			return (NULL);
 	}

@@ -1,38 +1,43 @@
 #include "main.h"
 
 /**
- * handle_hex - Handles the '%x' format specifier for lowercase hexadecimal.
+ * handle_special_strings - Handles the %S format specifier for non_printables
  *
- * @arg: The va_list containing the unsigned int to be printed in hexadecimal.
+ * @arg: The va_list containing the character string.
  *
- * Return: The number of characters printed.
+ * Return: returns the number of characters printed.
  */
 
-int handle_hex(va_list arg)
+int handle_special_strings(va_list arg)
 {
 	int count = 0;
-	unsigned int num;
+	char *ptr;
 
-	num = va_arg(arg, unsigned int);
-	count = print_hex(num, count, 0);
+	ptr = va_arg(arg, char *);
+	if (ptr == NULL)
+	{
+		ptr = "(null)";
+	}
+	while (*ptr)
+	{
+		if ((*ptr < 32 && *ptr >= 0) || *ptr >= 127)
+		{
+			count += write_char('\\');
+			count += write_char('x');
+
+			if (*ptr < 16)
+			{
+				count += write_char('0');
+			}
+			count += print_hex(*ptr, count, 1);
+		}
+		else
+		{
+			count += write_char(*ptr);
+		}
+		ptr++;
+	}
 	return (count);
 }
 
 
-/**
- * handle_upper_hex - Handles '%X' format specifier for uppercase hexadecimal.
- *
- * @arg: The va_list containing the unsigned int to be printed in uppercase.
- *
- * Return: The number of characters printed.
- */
-
-int handle_upper_hex(va_list arg)
-{
-	int count = 0;
-	unsigned int num;
-
-	num = va_arg(arg, unsigned int);
-	count = print_hex(num, count, 1);
-	return (count);
-}

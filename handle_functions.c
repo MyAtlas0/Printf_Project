@@ -40,6 +40,7 @@ int handle_char(va_list arg)
 
 	print_c = va_arg(arg, int);
 	count = write_char(print_c);
+
 	return (count);
 }
 
@@ -55,17 +56,17 @@ int handle_char(va_list arg)
 int handle_string(va_list arg)
 {
 	int count = 0;
-	char *ptr;
+	char *str;
 
-	ptr = va_arg(arg, char *);
-	if (ptr == NULL)
+	str = va_arg(arg, char *);
+	if (str == NULL)
 	{
-		ptr = "(nil)";
+		str = "(null)";
 	}
-	while (*ptr)
+	while (*str)
 	{
-		count += write_char(*ptr);
-		ptr++;
+		count += write_char(*str);
+		str++;
 	}
 	return (count);
 }
@@ -86,6 +87,7 @@ int handle_integer(va_list arg)
 
 	num = va_arg(arg, int);
 	count = print_number(num, count);
+
 	return (count);
 }
 
@@ -105,6 +107,7 @@ int handle_binary(va_list arg)
 
 	num = va_arg(arg, unsigned int);
 	count = print_binary(num, count);
+
 	return (count);
 }
 

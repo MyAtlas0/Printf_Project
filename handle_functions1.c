@@ -20,6 +20,7 @@ int print_binary(unsigned int num, int count)
 }
 
 
+
 /**
  * handle_pointer - Function to handle the %p format specifier.
  *
@@ -30,11 +31,11 @@ int print_binary(unsigned int num, int count)
 
 int handle_pointer(va_list arg)
 {
-	int i;
 	int count = 0;
+	int i, leading_zeros;
 	unsigned long p;
 	char hex[16];
-	const char *nil_str;
+	const char *null_str;
 	void *ptr = va_arg(arg, void *);
 
 	if (ptr)
@@ -44,27 +45,34 @@ int handle_pointer(va_list arg)
 		p = (unsigned long)ptr;
 		(void)hex[16];
 
+		leading_zeros = 1;
 		for (i = 0; i < 16; i++)
 		{
 			hex[i] = "0123456789abcdef"[p & 0xF];
 			p >>= 4;
 		}
+
 		for (i = 15; i >= 0; i--)
 		{
-			count += write_char(hex[i]);
+			if (hex[i] != '0' || !leading_zeros)
+			{
+				count += write_char(hex[i]);
+				leading_zeros = 0;
+			}
 		}
 	}
 	else
 	{
-		nil_str = "(nil)";
-		while (*nil_str)
+		null_str = "(null)";
+		while (*null_str)
 		{
-			count += write_char(*nil_str);
-			nil_str++;
+			count += write_char(*null_str);
+			null_str++;
 		}
 	}
 	return (count);
 }
+
 
 
 /**
@@ -72,18 +80,59 @@ int handle_pointer(va_list arg)
  *
  * @arg: The va_list containing the unknown specifier.
  *
- * @unknown: Varuable for the unknown character specifiers.
+ * @specifier: Variable for the unknown character specifiers.
  *
  * Return: The number of characters printed.
  */
 
-int handle_unknown(va_list arg, char unknown)
+int handle_unknown(va_list arg, char specifier)
 {
 	int count = 0;
 	(void)arg;
 
 	count += write_char('%');
-	count += write_char(unknown);
+	count += write_char(specifier);
 
-	return (-1);
+	return (count);
+}
+
+
+
+/**
+ * print_unsigned_int - This is a function that prints an unsigned integer.
+ *
+ * @num: The unsigned int to be printed.
+ *
+ * @count: The current character count.
+ *
+ * Return: Updated character count after printing.
+ */
+
+int print_unsigned_int(unsigned int num, int count)
+{
+	if (num > 9)
+	{
+		count = print_unsigned_int(num / 10, count);
+	}
+	return (count + write_char(num % 10 + '0'));
+}
+
+
+
+/**
+ * handle_unsigned_int - Handles '%u' format specifier for unsigned int.
+ *
+ * @arg: The va_list argument containing the unsigned int to be printed.
+ *
+ * Return: The number of characters printed.
+ */
+
+int handle_unsigned_int(va_list arg)
+{
+	int count = 0;
+	unsigned int num;
+
+	num = va_arg(arg, unsigned int);
+	count = print_unsigned_int(num, count);
+	return (count);
 }
