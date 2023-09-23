@@ -41,9 +41,7 @@ int main(void)
 	_printf("Unsigned hexadecimal:[%x, %X]\n", 3735928559, -1024);
 	printf("Unsigned hexadecimal:[%x, %X]\n", 3735928559, -1024);
 	_printf("Special string: [%S]\n", str);
-	_printf("%!\n");
-	printf("%!\n");
-	_printf("%S", "\x01\x02\x03\x04\x05\x06\x07");
-	printf("\\x01\\x02\\x03\\x04\\x05\\x06\\x07");
+	_printf("");
+	printf("");
 	return (0);
 }

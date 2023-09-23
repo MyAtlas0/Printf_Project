@@ -16,6 +16,10 @@ int _printf(const char *format, ...)
 	int (*handler_func)(va_list);
 
 	va_start(args, format);
+	if (format == NULL)
+	{
+		return (-1);
+	}
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
