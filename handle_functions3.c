@@ -29,7 +29,7 @@ int handle_special_strings(va_list arg)
 			{
 				count += write_char('0');
 			}
-			count += print_hex(*ptr, count, 1);
+			print_hex(*ptr, count, 1);
 		}
 		else
 		{

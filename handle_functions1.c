@@ -35,7 +35,7 @@ int handle_pointer(va_list arg)
 	int i, leading_zeros;
 	unsigned long p;
 	char hex[16];
-	const char *null_str;
+	const char *nil_str;
 	void *ptr = va_arg(arg, void *);
 
 	if (ptr)
@@ -63,11 +63,11 @@ int handle_pointer(va_list arg)
 	}
 	else
 	{
-		null_str = "(null)";
-		while (*null_str)
+		nil_str = "(nil)";
+		while (*nil_str)
 		{
-			count += write_char(*null_str);
-			null_str++;
+			count += write_char(*nil_str);
+			nil_str++;
 		}
 	}
 	return (count);
